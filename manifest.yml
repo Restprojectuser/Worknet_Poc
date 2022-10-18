@@ -1,0 +1,9 @@
+applications:
+- name: cherrywork-sig-worknet
+  memory: 1024M
+  random-route: false
+  docker:
+    image: wblnd.azurecr.io/cherrywork-worknet:v3
+    username: wblnd
+  env:
+    SPRING_APPLICATION_JSON: '{ "spring.application.name": "worknet-dev", "spring.config.import": "optional:configserver:https://cherrywork-config-server.cfapps.us10.hana.ondemand.com","spring.profiles.active": "SAP_swagger,SAP_security,enableCache,local_bean_config"}'  

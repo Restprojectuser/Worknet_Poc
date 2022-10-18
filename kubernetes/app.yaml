@@ -1,0 +1,30 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: worknet-java-dev 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worknet-java-dev 
+  template:
+    metadata:
+      labels:
+        app: worknet-java-dev  
+    spec:
+      containers:
+        - name: worknet 
+          image: wblnd.azurecr.io/worknet-java-dev:__TAG__
+          ports:
+          - containerPort: 8080     
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+    name: worknet-java-dev 
+spec:
+    type: ClusterIP
+    ports:
+    - port: 8080
+    selector:
+        app: worknet-java-dev
